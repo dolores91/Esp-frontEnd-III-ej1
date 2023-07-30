@@ -4,48 +4,52 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from "react";
 import { Character } from '../interface';
-const inter = Inter({ subsets: ['latin'] })
+import { Navbar } from '@/components/ui/Navbar/Navbar';
+import { Card } from '@/components/ui/Card/Card';
+import homeContentEn from '@/locale/en/home';
+import homeContentEs from '@/locale/es/home';
+import { GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { Layout } from '@/components/layouts';
 
-export default function Home() {
-  const [characters, setCharacters] = useState<Character[]>();
+interface Props {
+  characters: Character[];
+}
 
-  const getCharacters = async () => {
-    const characters = await fetch("https://www.amiiboapi.com/api/amiibo/");
-    const resp = await characters.json();
-    const data = resp.amiibo.slice(0, 20)
-    setCharacters(data);
-  };
+const Home: NextPage<Props> = ({ characters }) => {
 
-  useEffect(() => {
-    getCharacters();
-  }, []);
+  const { locale, defaultLocale } = useRouter();
+
+  // console.log(locale);
+
+  const content = locale === 'es' ? homeContentEs : homeContentEn;
+
+  // console.log(content);
 
   return (
     <>
-      <Head>
-        <title>Ecommerce App</title>
-        <meta
-          name="description"
-          content="¡Encuentra tu colección de figuras Amiibo en nuestro eCommerce! Explora una amplia selección de personajes, como Mario, Zelda, Pokémon y muchos más. Conecta con tus personajes favoritos y desbloquea contenido especial en tus juegos. ¡Envío rápido y seguro garantizado!"
-        />
-        <meta
-          name="keywords"
-          content="Figuras Amiibo, Colección Amiibo, Personajes de Videojuegos, Amiibo API, Mario, Zelda, Pokémon, Juguetes Interactivos, Desbloquear Contenido, Comprar Amiibo, Coleccionables de Juegos, Tienda de Amiibo."
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={`${styles.main}`}>
-        <h1>Bienvenido a mi sitio web</h1>
+      <Layout title='Ecommerce App - DH' description='Ecommerce de Figuras coleccionables, Mario, Luigi'>
+        <h1>{content.title}</h1>
         <div className={styles.grid}>
           {characters?.map((character) => (
-            <div key={character.tail}>
-              <h3>{character.name}</h3>
-              <Image src={character.image} alt={character.name} width={180} height={250} />
-            </div>
+            <Card key={character.tail} character={character} />
           ))}
         </div>
-      </main>
+      </Layout>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const character = await fetch("https://amiiboapi.com/api/amiibo/");
+  const rest = await character.json();
+  const data = rest.amiibo.slice(0, 20);
+
+  return {
+    props: {
+      characters: data,
+    },
+  };
+};
+
+export default Home;
