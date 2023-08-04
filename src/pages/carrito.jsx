@@ -1,7 +1,12 @@
+import { Layout } from '@/components/layouts/Layout'
 import React from 'react'
 
-export default function carrito() {
+const carrito = () => {
     return (
-        <div>carrito</div>
+        <Layout title='Carrito'>
+            <h1>Carrito</h1>
+        </Layout>
     )
 }
+
+export default carrito

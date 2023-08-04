@@ -1,7 +1,12 @@
+import { Layout } from '@/components/layouts/Layout'
 import React from 'react'
 
-export default function nosotros() {
+const nosotros = () => {
     return (
-        <div>nosotros</div>
+        <Layout title='Nosotros'>
+            <h1>Nosotros</h1>
+        </Layout>
     )
 }
+
+export default nosotros

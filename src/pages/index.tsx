@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import { Character } from '../interface';
 import { Navbar } from '@/components/ui/Navbar/Navbar';
 import { Card } from '@/components/ui/Card/Card';
-import homeContentEn from '@/locale/en/home';
-import homeContentEs from '@/locale/es/home';
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { Layout } from '@/components/layouts';
+import { defaultLocale } from '@/locale/constants';
+import { CONTENT_BY_LOCALE } from '@/locale';
+import { getCharacters } from '@/services';
 
 interface Props {
   characters: Character[];
@@ -18,18 +19,16 @@ interface Props {
 
 const Home: NextPage<Props> = ({ characters }) => {
 
-  const { locale, defaultLocale } = useRouter();
+  const { locale = defaultLocale } = useRouter();
 
-  // console.log(locale);
+  const localeConten = CONTENT_BY_LOCALE[locale as keyof typeof CONTENT_BY_LOCALE]
 
-  const content = locale === 'es' ? homeContentEs : homeContentEn;
-
-  // console.log(content);
+  const { home } = localeConten;
 
   return (
     <>
-      <Layout title='Ecommerce App - DH' description='Ecommerce de Figuras coleccionables, Mario, Luigi'>
-        <h1>{content.title}</h1>
+      <Layout title='Home - Ecommerce'>
+        <h1>{home.title}</h1>
         <div className={styles.grid}>
           {characters?.map((character) => (
             <Card key={character.tail} character={character} />
@@ -41,15 +40,14 @@ const Home: NextPage<Props> = ({ characters }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const character = await fetch("https://amiiboapi.com/api/amiibo/");
-  const rest = await character.json();
-  const data = rest.amiibo.slice(0, 20);
+
+  const data = await getCharacters()
 
   return {
     props: {
-      characters: data,
-    },
-  };
+      characters: data
+    }
+  }
 };
 
 export default Home;
