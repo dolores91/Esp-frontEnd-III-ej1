@@ -1,4 +1,4 @@
-import {Layout} from "@/components/layouts/Layout";
+/*import {Layout} from "@/components/layouts/Layout";
 import {useRouter} from "next/router";
 import {useState} from "react";
 import styles from "./Login.module.css";
@@ -69,4 +69,12 @@ const LoginPage = () => {
 	);
 };
 
-export default LoginPage;
+export default LoginPage;*/
+import React from 'react'
+
+export default function index() {
+	return (
+		<div>index</div>
+	)
+}
+

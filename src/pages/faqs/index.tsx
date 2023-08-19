@@ -1,4 +1,4 @@
-import { Layout } from '@/components/layouts/Layout'
+/*import { Layout } from '@/components/layouts/Layout'
 import { Faq } from '@/interface/faqs'
 import { NextPage } from 'next'
 import styles from './Faqs.module.css'
@@ -38,4 +38,11 @@ export const getStaticProps = async () => {
 
 }
 
-export default faqsPage
+export default faqsPage*/
+import React from 'react'
+
+export default function index() {
+  return (
+    <div>index</div>
+  )
+}

@@ -1,5 +1,5 @@
-import { Layout } from "@/components/layouts/Layout";
-import { Card } from "@/components/ui/card";
+/*import { Layout } from "@/components/layouts/Layout";
+import { Card } from "@/components/ui/Card";
 import { CONTENT_BY_LOCALE } from '@/locale';
 import styles from "@/styles/Home.module.css";
 import { NextPage } from 'next';
@@ -12,16 +12,16 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ characters }) => {
-	
+
 	const { locale } = useRouter();
-	
+
 	const localeContent = CONTENT_BY_LOCALE[locale as keyof typeof CONTENT_BY_LOCALE]
 
-	const {home} = localeContent;
+	const { home } = localeContent;
 
 	return (
 		<Layout title='Home'>
-			<h1>{home.title }</h1>
+			<h1>{home.title}</h1>
 			<div className={styles.grid}>
 				{characters?.map((character) => (
 					<Card key={character.tail} character={character} />
@@ -32,7 +32,7 @@ const Home: NextPage<Props> = ({ characters }) => {
 }
 
 export const getStaticProps = async () => {
-	
+
 	const data = await getCharacters();
 	return {
 		props: {
@@ -41,4 +41,12 @@ export const getStaticProps = async () => {
 	}
 };
 
-export default Home;
+export default Home;*/
+import React from 'react'
+
+export default function index() {
+	return (
+		<div>index</div>
+	)
+}
+

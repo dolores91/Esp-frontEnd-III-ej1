@@ -1,16 +1,16 @@
-import {FC} from "react";
+import { FC } from "react";
 import Image from "next/image";
-import {Character} from "@/interface";
+import { Character } from "@/interface";
 import styles from "./Card.module.css";
-import {useRouter} from "next/router";
-import Spinner from "../spinner/Spinner";
+import { useRouter } from "next/router";
+//import Spinner from "../spinner/Spinner";
 
 interface Props {
 	character: Character;
 }
 
-export const Card: FC<Props> = ({character}) => {
-	
+export const Card: FC<Props> = ({ character }) => {
+
 	const router = useRouter();
 
 	const handleClick = () => {
