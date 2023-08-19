@@ -1,17 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import { useEffect, useState } from "react";
-import { Character } from '../interface';
-import { Navbar } from '@/components/ui/Navbar/Navbar';
-import { Card } from '@/components/ui/Card/Card';
-import { GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { Layout } from '@/components/layouts';
-import { defaultLocale } from '@/locale/constants';
+import { Layout } from "@/components/layouts/Layout";
+import { Card } from "@/components/ui/Card/Card";
 import { CONTENT_BY_LOCALE } from '@/locale';
-import { getCharacters } from '@/services';
+import styles from "@/styles/Home.module.css";
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { Character } from "../interface";
+import { getCharacters } from '@/services/getCharacters';
 
 interface Props {
   characters: Character[];
@@ -19,30 +13,27 @@ interface Props {
 
 const Home: NextPage<Props> = ({ characters }) => {
 
-  const { locale = defaultLocale } = useRouter();
+  const { locale } = useRouter();
 
-  const localeConten = CONTENT_BY_LOCALE[locale as keyof typeof CONTENT_BY_LOCALE]
+  const localeContent = CONTENT_BY_LOCALE[locale as keyof typeof CONTENT_BY_LOCALE]
 
-  const { home } = localeConten;
+  const { home } = localeContent;
 
   return (
-    <>
-      <Layout title='Home - Ecommerce'>
-        <h1>{home.title}</h1>
-        <div className={styles.grid}>
-          {characters?.map((character) => (
-            <Card key={character.tail} character={character} />
-          ))}
-        </div>
-      </Layout>
-    </>
+    <Layout title='Home'>
+      <h1>{home.title}</h1>
+      <div className={styles.grid}>
+        {characters?.map((character) => (
+          <Card key={character.tail} character={character} />
+        ))}
+      </div>
+    </Layout>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
 
-  const data = await getCharacters()
-
+  const data = await getCharacters();
   return {
     props: {
       characters: data

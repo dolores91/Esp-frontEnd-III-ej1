@@ -1,9 +1,9 @@
-import { Character } from '@/interface';
-import { useRouter } from 'next/router';
-import React, { FC } from 'react';
-import styles from "./Card.module.css"
+import { FC } from "react";
 import Image from "next/image";
-import Spinner from "./../Spinner/Spinner"
+import { Character } from "@/interface";
+import styles from "./Card.module.css";
+import { useRouter } from "next/router";
+//import Spinner from "../spinner/Spinner";
 
 interface Props {
     character: Character;
