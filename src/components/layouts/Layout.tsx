@@ -1,15 +1,15 @@
 import Head from "next/head";
 import { FC } from "react";
-import { Navbar } from '../ui/navbar';
+import { Navbar } from '../ui/Navbar';
 
 interface Props {
-  children: React.ReactNode;
-  title: string
-  description?: string
-  keywords?: string
+	children: React.ReactNode;
+	title: string
+	description?: string
+	keywords?: string
 }
 
-export const Layout: FC<Props> = ({children, title, description, keywords}) => {
+export const Layout: FC<Props> = ({ children, title, description, keywords }) => {
 	return (
 		<>
 			<Head>
@@ -38,10 +38,10 @@ export const Layout: FC<Props> = ({children, title, description, keywords}) => {
 				<meta property='og:type' content='website' />
 				<link rel="icon" href="/favicon.ico" />
 				<meta charSet='utf-8' />
-      </Head>
-      <Navbar />
-      <main>{children}</main>
-      <footer>Footer</footer>
+			</Head>
+			<Navbar />
+			<main>{children}</main>
+			<footer>Footer</footer>
 		</>
 	);
 };
