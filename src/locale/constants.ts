@@ -4,14 +4,14 @@ const PT_BR = "pt-BR"
 
 // Gestionar las constantes de idioma
 export const locales = {
-    EN_US,
-    ES_ES,
-    PT_BR
+  EN_US,
+  ES_ES,
+  PT_BR
 }
 
 // Navbar
 export const localesNames = {
-    [EN_US]: "English",
-    [ES_ES]: "Español",
-    [PT_BR]: "Português"
+  [EN_US]: "English",
+  [ES_ES]: "Español",
+  [PT_BR]: "Português"
 }

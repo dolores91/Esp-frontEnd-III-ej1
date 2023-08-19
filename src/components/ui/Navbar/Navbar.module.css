@@ -1,5 +1,5 @@
-.navbar {
-  background-color: #020202;
+.navbar{
+  background-color: #1a1a1a;
   color: #fff;
   padding: 0.5rem 2rem;
   display: flex;
@@ -7,8 +7,26 @@
   align-items: center;
 }
 
-.navbar ul {
+.navbar ul{
   display: flex;
   list-style: none;
   gap: 1rem;
+}
+
+.localeSwitch {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  margin-left: 20px;
+}
+
+.localeSwitch p {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active {
+  color:red;
 }

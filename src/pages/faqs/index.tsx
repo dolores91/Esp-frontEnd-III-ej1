@@ -3,7 +3,7 @@ import { Faq } from '@/interface/faqs'
 import { NextPage } from 'next'
 import styles from './Faqs.module.css'
 
-interface Props {
+interface Props{
   faqs: Faq[]
 }
 
@@ -18,9 +18,9 @@ const faqsPage: NextPage<Props> = ({ faqs }) => {
             <h2>{faq.question}</h2>
             <p>{faq.answer}</p>
           </div>
-        ))}
+          ))}
       </div>
-    </Layout>
+     </Layout>
   )
 }
 

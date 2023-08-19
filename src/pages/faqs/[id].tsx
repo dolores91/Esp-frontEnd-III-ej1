@@ -1,14 +1,14 @@
-import { Layout } from "@/components/layouts/Layout";
-import { Faq } from "@/interface/faqs";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import {Layout} from "@/components/layouts/Layout";
+import {Faq} from "@/interface/faqs";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
 
 const FaqPage = () => {
 	const [faqs, setFaqs] = useState({} as Faq);
 
-	const { query } = useRouter();
+	const {query} = useRouter();
 
-	const { id } = query;
+	const {id} = query;
 
 	const getFaq = async () => {
 		if (id) {

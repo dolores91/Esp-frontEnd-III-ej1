@@ -1,7 +1,7 @@
-import { Layout } from "@/components/layouts/Layout";
-import { Serie } from "@/interface";
-import { getSeries } from "@/services/getSeries"
-import { GetServerSideProps, NextPage } from "next";
+import {Layout} from "@/components/layouts/Layout";
+import {Serie} from "@/interface";
+import {getSeries} from "@/service/getSeries";
+import {GetServerSideProps, NextPage} from "next";
 import React from "react";
 import styles from "./Serie.module.css"
 
@@ -9,7 +9,7 @@ interface Props {
 	series: Serie[];
 }
 
-const Series: NextPage<Props> = ({ series }) => {
+const Series: NextPage<Props> = ({series}) => {
 	return (
 		<Layout title="Series">
 			<h1>Series</h1>
@@ -25,14 +25,14 @@ const Series: NextPage<Props> = ({ series }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-	const series = await getSeries();
-
-	res.setHeader(
-		'Cache-Control',
-		'public, s-maxage=10, stale-while-revalidate'
-	)
-
+export const getServerSideProps:GetServerSideProps = async ({req, res}) => {
+  const series = await getSeries();
+  
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate'
+  )
+  
 
 	return {
 		props: {
